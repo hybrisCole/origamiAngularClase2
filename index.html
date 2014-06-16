@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+    </head>
+    <body ng-app="curso2Angular">
+      <div ng-controller="sumaMultiplicacionController">
+        Primer Valor: <input ng-model="primerValor" type="number" />
+        Segundo Valor: <input ng-model="segundoValor" type="number" />
+        <p>
+          <button ng-click="sumarValores()">Sumar</button>
+          <button ng-click="multiplicarValores()">Multiplicar</button>
+        </p>
+        <p>{{resultadoOperacion| currency}}</p>
+      </div>
+      <div ng-controller="twoWayDataBindController">
+        <input type="text" ng-model="variableBind"/>
+        <p>Hola {{variableBind}}</p>
+        <div>{{variableDos}}</div>
+        <form>
+          <span>Numero de Cedula</span>
+          <input type="text" ng-model="usuario.numeroCedula" />
+          <span>Nombre</span>
+          <input type="text" ng-model="usuario.nombre" />
+          <span>Apellidos</span>
+          <input type="text" ng-model="usuario.apellidos" />
+          <span>Direccion</span>
+          <input type="text" ng-model="usuario.direccion" />
+          <button ng-click="guardarContacto()">Guardar Contacto</button>
+        </form>
+        <div>{{usuario}}</div>
+        <div>
+          <button ng-click="actualizarListaContactos()">Actualizar Lista</button>
+          <input ng-model="filtroContacto" type="text"/>
+          <ul>
+            <li ng-repeat="usuarioLista in listaContactos | filter:filtroContacto">
+              {{usuarioLista.numeroCedula}} ||
+              {{usuarioLista.nombre}} ||
+              {{usuarioLista.apellidos}} ||
+              {{usuarioLista.direccion}}
+              <a href="javascript:void(0);" ng-click="eliminarContacto(usuarioLista)">Eliminar Contacto</a>
+            </li>
+          </ul>
+        </div>
+      <script src="js/main.js"></script>
+    </body>
+</html>
